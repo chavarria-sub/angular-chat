@@ -1,11 +1,11 @@
 steps:# 
 steps:
 - name: "gcr.io/cloud-builders/docker"
-args: ["build", "-t", "gcr.io/$PROJECT_ID/angular-chat", "."]
+args: ["build", "-t", "gcr.io/angularchat-poc/angular-chat", "."]
 
 # push the container image to Container Registry
 - name: "gcr.io/cloud-builders/docker"
-args: ["push", "gcr.io/$PROJECT_ID/angular-chat"]
+args: ["push", "gcr.io/angularchat-poc/angular-chat"]
 
 # Deploy container image to Cloud Run
 - name: "gcr.io/cloud-builders/gcloud"
@@ -15,8 +15,8 @@ args:
   "run",
   "deploy",
   "--allow-unauthenticated",
-  "$PROJECT_ID",
-  "--image","gcr.io/$PROJECT_ID/angular-chat",
+  "angularchat-poc",
+  "--image","gcr.io/angularchat-poc/angular-chat",
   "--region",
   "us-central1","
   --platform",
@@ -25,4 +25,4 @@ args:
   "128Mi"
 ]
 images:
-- "gcr.io/$PROJECT_ID/angular-chat"
+- "gcr.io/angularchat-poc/angular-chat"
